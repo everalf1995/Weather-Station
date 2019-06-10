@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Umbrella Weather</title>
+    <link rel="icon" href="images/logo.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="weather.css">
+
+    <script src="weather.js"></script>
+</head>
+
+<body class="indigo lighten-5">
+<nav class="nav-extended indigo darken-4">
+
+    <!--Title at the top of the site-->
+    <div class="nav-wrapper">
+        <a id="title" class="brand-logo center"><img id="logo" src="images/logo.svg" alt="Logo" width="24" height="24"/> Weather</a>
+    </div>
+
+    <!--Options on NavBar-->
+    <div class="nav-content">
+        <ul class="tabs tabs-transparent" id="nav_bar_options">
+            <li class="tab"><a id="nav_bar_weekly" onclick="changeActive(0)" class="active">Weekly</a></li>
+            <li class="tab"><a id="nav_bar_hourly" onclick="changeActive(1)" class="">Hourly</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!--Zip Code Bar-->
+<nav>
+    <div class="nav-wrapper indigo darken-2">
+        <form>
+            <div class="input-field">
+                <input id="search_input" type="search" placeholder="Enter Zip Code" onfocus="zipCodeBarFocused()" onblur="zipCodeBarNotFocused()" onkeypress="checkIfEnter(event, document.querySelector('#search_input').value)" required>
+                <label class="label-icon" for="search_icon"><i class="material-icons"><img id="search_icon" src="images/search.svg" alt="Search icon" width="24" height="24"/></i></label>
+                <i class="material-icons"><img id="close_icon" src="images/close.svg" alt="Close icon" width="24" height="24"/></i>
+            </div>
+        </form>
+    </div>
+</nav>
+
+<!--Snackbar that displays error message-->
+<div id="snackbar">The Zip Code you entered is invalid</div>
+
+
+<!--Info about current location-->
+<div class="center" id="main" style="display: none;">
+    <div class="row">
+        <div class="col s2"></div>
+        <div class="col s8">
+            <h6 id="time_main">Placeholder Time</h6>
+            <h4 id="location_main">Placeholder Location</h4>
+            <h5 id="temperature_main">Placeholder Temperature</h5>
+            <h5 id="weather_main">Placeholder Weather</h5>
+            <img id="weather_icon_main" src="images/placeholder.svg" alt="Weather icon" width="80" height="80"/>
+        </div>
+        <div class="col s2"></div>
+    </div>
+</div>
+
+<!--Hourly Forecast-->
+<div id="hourly" style="display: none;" class="row">
+    <div class="col s2"></div>
+    <div class="col s8">
+        <table class="striped centered">
+            <!--Attributes-->
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Temperature</th>
+                <th>Weather</th>
+                <th>Icon</th>
+            </tr>
+            </thead>
+
+            <tbody id="hourly_body"></tbody>
+        </table>
+    </div>
+    <div class="col s2"></div>
+</div>
+
+<!--Weekly Forecast-->
+<div id="weekly" style="display: none;" class="row">
+    <div class="col s2"></div>
+    <div class="col s8">
+        <table class="striped centered">
+            <!--Attributes-->
+            <thead>
+            <tr>
+                <th>Day</th>
+                <th>Temperature</th>
+                <th>Weather</th>
+                <th>Icon</th>
+            </tr>
+            </thead>
+
+            <tbody id="weekly_body"></tbody>
+        </table>
+    </div>
+    <div class="col s2"></div>
+</div>
+</body>
+</html>
